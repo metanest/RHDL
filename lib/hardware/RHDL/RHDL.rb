@@ -85,7 +85,7 @@ class Design
       #remove method_missing here (or undefine it)
       @__init = b
       #puts "#{self}.instance_methods.sort: #{self.instance_methods.sort.join(',')}"
-
+=begin
       begin
         #we need to instance_eval the block here to see if it might 
         #contain a define_behavior block.  But the problem with 
@@ -114,8 +114,7 @@ class Design
           raise
         end
       end
-
-
+=end
     end
     def check_missing_methods
       unless missing_methods.empty?
