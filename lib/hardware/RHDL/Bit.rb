@@ -505,7 +505,7 @@ end
 end #RHDL
 
 if $0 == __FILE__
-  require 'RHDL'
+  require '../RHDL'
   require 'Signal'
   require 'test/unit'
   include RHDL
