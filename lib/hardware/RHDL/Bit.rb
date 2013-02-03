@@ -5,6 +5,7 @@
 # released under the GNU General Public License (GPL)
 #
 ####################################################
+=begin
 class Integer
   def to_binstr 
     str = ""
@@ -20,6 +21,7 @@ class Integer
     BitVector.new(self.to_binstr)
   end
 end
+=end
 module RHDL
 module BitOps
   attr_reader :value
@@ -441,7 +443,7 @@ class BitVector
     when String
       if len
         if len > val.length
-          #pad with 0's
+          #pad with 0s
           val='0'*(len-val.length)+val
         elsif len < val.length
           #truncate it:
@@ -462,11 +464,17 @@ class BitVector
         end
       }
     when Fixnum #TODO: change this to convert num to bitstring
-      str = val.to_binstr
+      str = sprintf "%b", val
+      if str[0, 2] == ".." then
+        str = str[2 .. -1]
+      end
       if len
-        if len > str.length
-          #pad with 0's
+        if val >= 0 and len > str.length
+          #pad with 0s
           str='0'*(len-str.length)+str
+        elsif val < 0 and len > str.length
+          #pad with 1s
+          str='1'*(len-str.length)+str
         elsif len < str.length
           #truncate it:
           str = str.reverse[0,len].reverse 

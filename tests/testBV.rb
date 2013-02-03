@@ -85,7 +85,7 @@ class TestBV < Test::Unit::TestCase
     bv3 = (@bv2-2)
     assert_equal(bv3,'1010',"Should be 10")
     bv3.assign bv3-'1011'
-    assert_equal(bv3,'0001',"")
+    assert_equal(bv3,'1111',"")
   end
 
   def test_inv
