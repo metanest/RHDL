@@ -351,8 +351,9 @@ class BitVector
     if args.length ==0
       self_op(oper)
     elsif args.length == 1
-      #TODO: ^, & shouldn't be mathops, should be bin_arg_ops
-      if oper.to_s =~ /[+-\/\*\^\&]/
+      ##TODO: ^, & shouldn't be mathops, should be bin_arg_ops
+      #if oper.to_s =~ /[+-\/\*\^\&]/
+      if oper.to_s =~ /[-+\/*]/
         math_ops(oper,*args)
       else
         bin_arg_ops(oper,*args)    
@@ -369,6 +370,9 @@ class BitVector
     #what if it's a string literal?
     tmpArray = @bitArray.clone
     shortestLen = 0
+    if bv.kind_of? Integer
+      bv = BitVector(bv)
+    end
     if @bitArray.length >= bv.length
       shortestLen = bv.length
     else
@@ -382,6 +386,7 @@ class BitVector
       }
       #tmpArray.reverse!
     when String
+      bv = bv.reverse
       shortestLen.times { |i|
         #was:#tmpArray[i] = (@bitArray[i].or(Bit.new(bv[i,1])))
         tmpArray[i] = (@bitArray[i].send(op,(Bit.new(bv[i,1]))))
