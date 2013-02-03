@@ -254,7 +254,7 @@ class BitVector
   def to_i
     str = self.to_s
     if str !~ /[xXzZ]/
-      eval('0b'+self.inspect)
+      self.inspect.to_i(2)
     else
       nil
     end
