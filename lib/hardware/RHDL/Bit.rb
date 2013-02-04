@@ -271,7 +271,7 @@ class BitVector
     when BitVector,Bit
       BitVector.new(self.to_i.send(op,other.to_i),@len)
     when String
-      BitVector.new(self.to_i.send(op,other.bin),@len)
+      BitVector.new(self.to_i.send(op,other.to_i(2)),@len)
     else
       #TODO: raise exception
       raise TypeError, "Can't do  BitVector #{op.to_s} #{other.class}"
@@ -340,7 +340,7 @@ class BitVector
       self.to_i <=> other.to_i
     when String
       #TODO: check for other containing 'X','x','Z' or 'z'
-      self.to_i <=> other.bin 
+      self.to_i <=> other.to_i(2)
     else
       raise TypeError, "#{other.class} not comparable to BitVector"
     end

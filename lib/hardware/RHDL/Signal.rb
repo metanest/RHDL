@@ -10,6 +10,7 @@
 # converts a String composed of '1's and '0's to binary
 # (note: won't be needed in Ruby 1.7/1.8
 # #####################################################
+=begin
 class String
   def bin
     val = self.strip
@@ -21,16 +22,14 @@ class String
     eval(sign+"0b"+num)
   end
 end
-
+=end
 #####################################################
 # add a 'inv' method to the built-in Fixnum class
 # 
 #####################################################
 class Fixnum
   def inv
-    binary = sprintf("%b",self) #get a binary representation of 'self'
-    ones   = '1'*binary.length  #create a string of '1's the length of binary
-    self ^ ones.bin             #invert by XOR'ing with ones
+    ~self
   end
 end
 
