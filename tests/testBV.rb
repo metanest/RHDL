@@ -96,8 +96,8 @@ class TestBV < Test::Unit::TestCase
   end
 
   def test_or
-    bv3 = @bv2 | '1111'
-    assert_equal(bv3,'1111',"Should be 1111")
+    bv3 = @bv2 | '0101'
+    assert_equal(bv3,'1101',"Should be 1101")
     assert_equal(bv3.class,BitVector,"Should be a BitVector") 
   end
 
